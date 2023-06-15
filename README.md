@@ -10,8 +10,8 @@ Kick-off video: https://www.twitch.tv/videos/1843493291
 
 # Checkpoint
 
-https://docs.checkpoint.fyi/tutorials/ep1-get-started
-https://www.twitch.tv/videos/1845974575
+https://docs.checkpoint.fyi/tutorials/ep1-get-started  
+https://www.twitch.tv/videos/1845974575  
 https://www.youtube.com/watch?v=OY6NJQtVO20
 
 # Dojo:
