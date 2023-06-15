@@ -8,7 +8,13 @@ For two weeks, the hackathon will be ongoing. The focus of this hackathon is to 
 
 Kick-off video: https://www.twitch.tv/videos/1843493291
 
-Dojo:
+# Checkpoint
+
+https://docs.checkpoint.fyi/tutorials/ep1-get-started
+https://www.twitch.tv/videos/1845974575
+https://www.youtube.com/watch?v=OY6NJQtVO20
+
+# Dojo:
 
 Information about the goal: https://www.notion.so/Hack-Information-Realms-db86705480c34dd9a2a6472d8637c461
 
