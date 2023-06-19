@@ -5,6 +5,7 @@ import { LocalStorage } from 'node-localstorage';
 /* 
   Persist data to local storage as mapping (address => msgId)
   Maps an ethereum address to telegram conversation id
+  Don't use this in production as it's not secure
 */
 const keyStore = new LocalStorage('./scratch');
 
