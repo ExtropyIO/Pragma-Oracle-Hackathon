@@ -12,12 +12,16 @@ const keyStore = new LocalStorage('./scratch');
 
 export default function sendTelegramMsg(address: string, msg: string) {
   const bot = new Telegraf(process.env.TELEGRAM_TOKEN as string);
-  bot.telegram.sendMessage(keyStore.getItem(address), msg);
+  let msgID = keyStore.getItem(address);
+  if (msgID !== null) {
+    bot.telegram.sendMessage(msgID, msg);
+  } else {
+    console.log("No chat ID found for address " + address);
+  };
 }
 
 
 //Example usage:
 
-sendTelegramMsg("0x361D3d0AE98b84dAd452104B27ceA24464C16367", "Hello World!");
 
 

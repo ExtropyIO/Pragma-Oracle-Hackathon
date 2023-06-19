@@ -17,7 +17,7 @@ export default async function telegram() {
     ctx.reply('Use /track [Your-ethereum account]')
   })
   telegram.command('track', async (ctx) => {
-    let account = ctx.message.text;
+    let account = ctx.message.text.split(" ")[1];
     //Check address is valid
     if (web3.utils.isAddress(account) === false) {
       if (account === undefined) {
