@@ -1,6 +1,10 @@
 import { hexStrArrToStr, toAddress } from './utils';
 import type { CheckpointWriter } from '@snapshot-labs/checkpoint';
 
+import { Telegraf } from 'telegraf';
+import { LocalStorage } from 'node-localstorage';
+const keyStore = new LocalStorage('./scratch');
+
 export async function handleDeploy() {
   // Run logic as at the time Contract was deployed.
 }
@@ -8,9 +12,14 @@ export async function handleDeploy() {
 // See here for the original logic used to create post transactions:
 // https://gist.github.com/perfectmak/417a4dab69243c517654195edf100ef9#file-index-ts
 export async function handleAnything({ block, tx, event, mysql }: Parameters<CheckpointWriter>[0]) {
-  if (!event) return;
+console.log('HANDLE ANYTHING')
+//  if (!event) return;
 console.log('EVENT')
 console.log({event})
+console.log('send message')
+  const wallet = event && toAddress(event.data[0]);
+  const msg = 'Recovery'
+  // sendTelegramMsg(wallet, msg)
 }
 
 // This decodes the new_post events data and stores successfully
@@ -58,4 +67,14 @@ export async function handleNewPost({ block, tx, event, mysql }: Parameters<Chec
 
   // table names are `lowercase(TypeName)s` and can be interacted with sql
   await mysql.queryAsync('INSERT IGNORE INTO posts SET ?', [post]);
+}
+
+function sendTelegramMsg(address: string, msg: string) {
+  const bot = new Telegraf(process.env.TELEGRAM_TOKEN as string);
+  let msgID = keyStore.getItem(address);
+  if (msgID !== null) {
+    bot.telegram.sendMessage(msgID, msg);
+  } else {
+    console.log("No chat ID found for address " + address);
+  };
 }
