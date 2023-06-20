@@ -13,8 +13,8 @@ const schemaFile = path.join(__dirname, `${dir}../src/schema.gql`);
 const schema = fs.readFileSync(schemaFile, 'utf8');
 
 const checkpointOptions = {
-  logLevel: LogLevel.Info
-  // prettifyLogs: true, // uncomment in local dev
+  logLevel: LogLevel.Info,
+  prettifyLogs: true, // uncomment in local dev
 };
 
 // Initialize checkpoint

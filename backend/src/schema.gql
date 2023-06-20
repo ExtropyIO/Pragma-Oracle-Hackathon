@@ -9,3 +9,12 @@ type Post {
   created_at: Int!
   created_at_block: Int!
 }
+
+type Recovery {
+  id: String!
+  event: String!
+  address: String!
+  tx_hash: String!
+  triggered_at: Int!
+  triggered_at_block: Int!
+}
