@@ -26,8 +26,8 @@ export async function handleNewPost({ block, tx, event, mysql }: Parameters<Chec
   let tag = '';
   const contentLength = BigInt(event.data[1]);
   const tagLength = BigInt(event.data[2 + Number(contentLength)]);
-  const timestamp = block.timestamp;
-  const blockNumber = block.block_number;
+  const timestamp = block && block.timestamp;
+  const blockNumber = block && block.block_number;
 
   // parse content bytes
   try {

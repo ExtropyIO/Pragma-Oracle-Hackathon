@@ -49,7 +49,6 @@ app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
 
 
 // TELEGRAF
-/*
 (() => {
   const telegram = new Telegraf(process.env.TELEGRAM_TOKEN as string);
 
@@ -74,4 +73,3 @@ app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
   process.once('SIGINT', () => telegram.stop('SIGINT'))
   process.once('SIGTERM', () => telegram.stop('SIGTERM'))
 })()
-*/
