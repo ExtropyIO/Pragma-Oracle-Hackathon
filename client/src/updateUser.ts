@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import { Telegraf } from 'telegraf';
-import Web3 from 'web3';
 import { LocalStorage } from 'node-localstorage';
 
 /* 

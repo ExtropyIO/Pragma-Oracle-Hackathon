@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Telegraf } from 'telegraf';
-import Web3 from 'web3';
 import { LocalStorage } from 'node-localstorage';
+
 /* 
   Persist data to local storage as mapping (address => msgId)
   Maps an ethereum address to telegram conversation id
@@ -9,28 +9,41 @@ import { LocalStorage } from 'node-localstorage';
 */
 const keyStore = new LocalStorage('./scratch');
 
+/*
+Data validation for Starknet addresses is not yet implemented. Should be added in future.Sudo code:
+
+  import { Address } from 'starknet.js';
+
+  const checksummedAddress = Address.getChecksumAddress(account);
+  if (Address.validateChecksumAddress(checksummedAddress) === false) {
+    ctx.reply("Please enter /track followed by a valid Starknet address")
+  } else {
+    ////Code should take account and pass to backend here.
+  }
+
+*/
+
 // telegram listener
 export default async function telegram() {
   const telegram = new Telegraf(process.env.TELEGRAM_TOKEN as string);
-  const web3 = new Web3(process.env.RPC_URL as string);
-  telegram.start((ctx) => { ctx.reply('Welcome to Custard Watchtower. Enter /track followed by a valid Ethereum address to get started.') })
+
+  telegram.start((ctx) => { ctx.reply('Welcome to Custard Watchtower. Enter /track followed by a valid Starknet address to get started.') })
+
   telegram.help((ctx) => {
-    ctx.reply('Use /track [Your-ethereum account]')
+    ctx.reply('Use /track [Starknet Address]')
   })
+
   telegram.command('track', async (ctx) => {
-    let account = ctx.message.text.split(" ")[1];
-    //Check address is valid
-    if (web3.utils.isAddress(account) === false) {
-      if (account === undefined) {
-        ctx.reply("Please enter /track followed by a valid Ethereum address")
-      } else { ctx.reply(`${account} is not a valid Ethereum address`) }
+    let account = ctx.message.text.split(" ")[1]
+
+    if (account === undefined) {
+      ctx.reply("Please enter /track followed by a valid Ethereum address")
     } else {
       keyStore.setItem(account, ctx.message.chat.id);
       ctx.reply("done " + account);
       /*
       Code should take account and pass to backend here. 
       */
-
     }
   });
   telegram.launch()
