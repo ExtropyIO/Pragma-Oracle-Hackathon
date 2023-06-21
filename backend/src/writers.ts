@@ -1,5 +1,6 @@
 import { hexStrArrToStr, toAddress } from './utils';
 import type { CheckpointWriter } from '@snapshot-labs/checkpoint';
+import { getChecksumAddress, validateChecksumAddress } from 'starknet';
 
 import { Telegraf } from 'telegraf';
 import { LocalStorage } from 'node-localstorage';
@@ -17,12 +18,11 @@ console.log('HANDLE ANYTHING')
 console.log('EVENT')
 console.log({rawEvent})
 console.log('send message')
-  const wallet = rawEvent && toAddress(rawEvent.data[0]);
+  let wallet = rawEvent && toAddress(rawEvent.data[0]);
+  wallet = getChecksumAddress(wallet) || true
   const msg = 'Recovery'
   sendTelegramMsg(wallet, msg)
 }
-
-sendTelegramMsg('0x0750188Bb9df4524C6D4682A44317B273C443132FBB666f72A3A3726ef82Cb28', 'Fox')
 
 // This decodes the new_post events data and stores successfully
 // decoded information in the `posts` table.
