@@ -10,8 +10,6 @@ export async function handleDeploy() {
   // Run logic as at the time Contract was deployed.
 }
 
-// See here for the original logic used to create post transactions:
-// https://gist.github.com/perfectmak/417a4dab69243c517654195edf100ef9#file-index-ts
 export async function handleAnything({ block, tx, rawEvent, mysql }: Parameters<CheckpointWriter>[0]) {
 console.log('HANDLE ANYTHING')
 //  if (!event) return;
