@@ -11,16 +11,18 @@ export async function handleDeploy() {
 
 // See here for the original logic used to create post transactions:
 // https://gist.github.com/perfectmak/417a4dab69243c517654195edf100ef9#file-index-ts
-export async function handleAnything({ block, tx, event, mysql }: Parameters<CheckpointWriter>[0]) {
+export async function handleAnything({ block, tx, rawEvent, mysql }: Parameters<CheckpointWriter>[0]) {
 console.log('HANDLE ANYTHING')
 //  if (!event) return;
 console.log('EVENT')
-console.log({event})
+console.log({rawEvent})
 console.log('send message')
-  const wallet = event && toAddress(event.data[0]);
+  const wallet = rawEvent && toAddress(rawEvent.data[0]);
   const msg = 'Recovery'
-  // sendTelegramMsg(wallet, msg)
+  sendTelegramMsg(wallet, msg)
 }
+
+sendTelegramMsg('0x0750188Bb9df4524C6D4682A44317B273C443132FBB666f72A3A3726ef82Cb28', 'Fox')
 
 // This decodes the new_post events data and stores successfully
 // decoded information in the `posts` table.
