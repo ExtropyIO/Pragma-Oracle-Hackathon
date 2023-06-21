@@ -9,6 +9,7 @@
     "starknet": "5.13.2",
     "telegraf": "^4.8.4",
     "ts-node": "^10.9.1"
+    "starknet": "^4.13.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.40",

@@ -7,6 +7,7 @@ import Checkpoint, { LogLevel } from '@snapshot-labs/checkpoint';
 import config from './config.json';
 import * as writers from './writers';
 import checkpointBlocks from './checkpoints.json';
+import { getChecksumAddress, validateChecksumAddress } from 'starknet';
 
 // TELEGRAF
 import { Telegraf } from 'telegraf';
@@ -49,7 +50,7 @@ app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
 
 
 // TELEGRAF
-(() => {
+export default async function telegram() {
   const telegram = new Telegraf(process.env.TELEGRAM_TOKEN as string);
 
   telegram.start((ctx) => { ctx.reply('Welcome to Custard Watchtower. Enter /track followed by a valid Starknet address to get started.') })
@@ -59,17 +60,29 @@ app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
   })
 
   telegram.command('track', async (ctx) => {
-    let account = ctx.message.text.split(" ")[1]
+    try {
+      let account = ctx.message.text.split(" ")[1]
+      const checksummedAddress = getChecksumAddress(account);
 
-    if (account === undefined) {
-      ctx.reply("Please enter /track followed by a valid Ethereum address")
-    } else {
-      keyStore.setItem(account, ctx.message.chat.id);
-      ctx.reply("done " + account);
+      if (validateChecksumAddress(checksummedAddress) === false) {
+        ctx.reply("Please enter /track followed by a valid Starknet address")
+      } else {
+        keyStore.setItem(account, ctx.message.chat.id);
+        ctx.reply("done " + checksummedAddress);
+        /*
+        Code should take account and pass to backend here. 
+        */
+      }
+      
+    } catch (error) {
+      ctx.reply("ERROR: " + error)
     }
+   
   });
   telegram.launch()
   // Enable graceful stop
   process.once('SIGINT', () => telegram.stop('SIGINT'))
   process.once('SIGTERM', () => telegram.stop('SIGTERM'))
-})()
+};
+
+telegram();
