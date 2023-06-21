@@ -23,5 +23,5 @@ export default function sendTelegramMsg(address: string, msg: string) {
 
 //Example usage:
 
-
+//sendTelegramMsg("0x000000000", "Hello world!")
 

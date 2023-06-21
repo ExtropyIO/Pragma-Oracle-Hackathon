@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { Telegraf } from 'telegraf';
 import { LocalStorage } from 'node-localstorage';
+import { getChecksumAddress, validateChecksumAddress } from 'starknet';
 
 /* 
   Persist data to local storage as mapping (address => msgId)
@@ -9,12 +10,13 @@ import { LocalStorage } from 'node-localstorage';
 */
 const keyStore = new LocalStorage('./scratch');
 
+
 /*
 Data validation for Starknet addresses is not yet implemented. Should be added in future.Sudo code:
 
-  import { Address } from 'starknet.js';
+  
 
-  const checksummedAddress = Address.getChecksumAddress(account);
+  
   if (Address.validateChecksumAddress(checksummedAddress) === false) {
     ctx.reply("Please enter /track followed by a valid Starknet address")
   } else {
@@ -34,17 +36,24 @@ export default async function telegram() {
   })
 
   telegram.command('track', async (ctx) => {
-    let account = ctx.message.text.split(" ")[1]
+    try {
+      let account = ctx.message.text.split(" ")[1]
+      const checksummedAddress = getChecksumAddress(account);
 
-    if (account === undefined) {
-      ctx.reply("Please enter /track followed by a valid Ethereum address")
-    } else {
-      keyStore.setItem(account, ctx.message.chat.id);
-      ctx.reply("done " + account);
-      /*
-      Code should take account and pass to backend here. 
-      */
+      if (validateChecksumAddress(checksummedAddress) === false) {
+        ctx.reply("Please enter /track followed by a valid Starknet address")
+      } else {
+        keyStore.setItem(account, ctx.message.chat.id);
+        ctx.reply("done " + checksummedAddress);
+        /*
+        Code should take account and pass to backend here. 
+        */
+      }
+      
+    } catch (error) {
+      ctx.reply("ERROR: " + error)
     }
+   
   });
   telegram.launch()
   // Enable graceful stop

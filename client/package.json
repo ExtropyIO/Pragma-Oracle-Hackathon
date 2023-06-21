@@ -6,7 +6,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "node-localstorage": "^2.2.1",
-    "starknet": "^4.22.0",
+    "starknet": "5.13.2",
     "telegraf": "^4.8.4",
     "ts-node": "^10.9.1"
   },
