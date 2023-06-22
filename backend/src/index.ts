@@ -20,7 +20,7 @@ const schema = fs.readFileSync(schemaFile, 'utf8');
 
 const checkpointOptions = {
   logLevel: LogLevel.Info,
-  prettifyLogs: true, // uncomment in local dev
+  prettifyLogs: true,
   resetOnConfigChange: true
 };
 
@@ -69,10 +69,7 @@ export default async function telegram() {
         ctx.reply("Please enter /track followed by a valid Starknet address")
       } else {
         keyStore.setItem(account, ctx.message.chat.id);
-        ctx.reply("done " + checksummedAddress);
-        /*
-        Code should take account and pass to backend here. 
-        */
+        ctx.reply(`Done! You're going to get notified about all recovery events for wallet ${checksummedAddress}`)
       }
       
     } catch (error) {
