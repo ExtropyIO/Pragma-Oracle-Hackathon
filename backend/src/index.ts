@@ -21,6 +21,7 @@ const schema = fs.readFileSync(schemaFile, 'utf8');
 const checkpointOptions = {
   logLevel: LogLevel.Info,
   prettifyLogs: true, // uncomment in local dev
+  resetOnConfigChange: true
 };
 
 // Initialize checkpoint
