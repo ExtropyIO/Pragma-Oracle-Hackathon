@@ -13,6 +13,26 @@
     {
       "name": "EscapeSignerTriggered",
       "fn": "handleAnything"
+    },
+    {
+      "name": "SignerEscaped",
+      "fn": "handleAnything"
+    },
+    {
+      "name": "EscapeCanceled",
+      "fn": "handleAnything"
+    },
+    {
+      "name": "SignerChanged",
+      "fn": "handleAnything"
+    },
+    {
+      "name": "GuardianChanged",
+      "fn": "handleAnything"
+    },
+    {
+      "name": "GuardianBackupChanged",
+      "fn": "handleAnything"
     }
   ]
 }
