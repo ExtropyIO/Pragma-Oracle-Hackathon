@@ -16,7 +16,7 @@ console.log('HANDLE ANYTHING')
 console.log('EVENT')
 console.log({rawEvent})
 console.log('send message')
-  let wallet = rawEvent && toAddress(rawEvent.data[0]);
+  let wallet = rawEvent && toAddress(rawEvent.from_address);
   wallet = getChecksumAddress(wallet) || true
   const msg = 'Recovery'
   sendTelegramMsg(wallet, msg)
