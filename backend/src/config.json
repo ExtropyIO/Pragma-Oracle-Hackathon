@@ -2,12 +2,39 @@
   "network_node_url": "https://starknet-goerli.infura.io/v3/46a5dd9727bf48d4a132672d3f376146",
   "sources": [
     {
-      "contract": "0x06bb338b361107aa231c134b3b147bb630ae6cba39bdb02927ce11ae62f3291a",
-      "start": 821810,
+      "contract": "0x05d7e5a89880d45ba34ac9624ba80798e2107aa4af232668115b5d4ed1a06b6b",
+      "start": 822160,
       "deploy_fn": "handleDeploy",
       "events": [
         {
-          "name": "EscapeGuardian",
+          "name": "EscapeGuardianTriggered",
+          "fn": "handleAnything"
+        },
+        {
+          "name": "GuardianEscaped",
+          "fn": "handleAnything"
+        },
+        {
+          "name": "EscapeSignerTriggered",
+          "fn": "handleAnything"
+        }
+      ]
+    },
+    {
+      "contract": "0x06e36c0f972bd2ac06124738eeb67b65fc64ce96d0ea6276cc87e66c5a5a2ad0",
+      "start": 822160,
+      "deploy_fn": "handleDeploy",
+      "events": [
+        {
+          "name": "EscapeGuardianTriggered",
+          "fn": "handleAnything"
+        },
+        {
+          "name": "GuardianEscaped",
+          "fn": "handleAnything"
+        },
+        {
+          "name": "EscapeSignerTriggered",
           "fn": "handleAnything"
         }
       ]
