@@ -1,18 +1,14 @@
 {
   "network_node_url": "https://starknet-goerli.infura.io/v3/46a5dd9727bf48d4a132672d3f376146",
-  "start": 822268,
+  "start": 822220,
   "global_events": [
     {
       "name": "EscapeGuardianTriggered",
-      "fn": "handleAnything"
+      "fn": "handleEscapeGuardianTriggered"
     },
     {
-      "name": "GuardianEscaped",
-      "fn": "handleAnything"
-    },
-    {
-      "name": "EscapeSignerTriggered",
-      "fn": "handleAnything"
+      "name": "GuardianChanged",
+      "fn": "handleGuardianChanged"
     }
   ]
 }
