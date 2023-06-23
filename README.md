@@ -16,10 +16,8 @@ Custard Watchtower is a watchtower project where users can submit their account 
 
 ## How to use
 
-- Go to `https://t.me/CustardWalletBot` and track your wallet.
-- Invoke `escape_guardian` on `https://testnet.starkscan.co/contract/0x06bb338b361107aa231c134b3b147bb630ae6cba39bdb02927ce11ae62f3291a#read-write-contract-sub-write` from your Starknet Testnet wallet
-
-This will change when we have actual Cairo 1 smart contract wallet to trigger recovery.
+- Go to `https://t.me/CustardWalletBot` and track on of our Smart Contract wallets.
+- Invoke `change_guardian` or `trigger_escape_guardian` on the tracked wallet.
 
 ## Troubleshooting
 
