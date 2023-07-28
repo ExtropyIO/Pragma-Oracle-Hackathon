@@ -68,7 +68,7 @@ export default async function telegram() {
       if (validateChecksumAddress(checksummedAddress) === false) {
         ctx.reply("Please enter /track followed by a valid Starknet address")
       } else {
-        keyStore.setItem(account, ctx.message.chat.id);
+        keyStore.setItem(checksummedAddress, ctx.message.chat.id);
         ctx.reply(`Done! You're going to get notified about all recovery events for wallet ${checksummedAddress}`)
       }
       
